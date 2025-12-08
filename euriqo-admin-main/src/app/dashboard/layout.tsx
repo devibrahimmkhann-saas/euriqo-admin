@@ -16,7 +16,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     {/* END TOP NAVBAR */}
 
                     {/* BEGIN CONTENT AREA */}
-                    <div className="animate__animated p-6">{children}</div>
+                    <div className="animate__animated p-4 sm:p-6 overflow-x-hidden">{children}</div>
                     {/* END CONTENT AREA */}
 
                     {/* BEGIN FOOTER */}

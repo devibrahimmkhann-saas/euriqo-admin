@@ -3,6 +3,85 @@
 @tailwind utilities;
 
 @layer components {
+    /* Sidebar */
+    .sidebar {
+        @apply fixed bottom-0 top-0 z-50 h-full min-h-screen w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300;
+    }
+
+    .sidebar .nav-item > a {
+        @apply mb-1 flex w-full items-center justify-between overflow-hidden whitespace-nowrap rounded-md p-2.5 text-[#506690] hover:bg-[#000]/[0.08] hover:text-black dark:hover:bg-[#181f32] dark:hover:text-white-dark;
+    }
+    
+    .sidebar .nav-item > a.active {
+        @apply bg-[#000]/[0.08] text-black dark:bg-[#181f32] dark:text-white-dark;
+    }
+
+    .sidebar .nav-item > a.active > div > span {
+        @apply dark:!text-white-dark;
+    }
+
+    .sidebar .nav-item a div:first-child svg {
+        @apply h-5 w-5 text-black/50 dark:text-white/50;
+    }
+
+    .main-container .main-content {
+        @apply transition-all duration-300 lg:ltr:ml-[260px] lg:rtl:mr-[260px];
+    }
+
+    /* Mobile sidebar states */
+    .main-container.toggle-sidebar .main-content {
+        @apply lg:ltr:ml-0 lg:rtl:mr-0;
+    }
+
+    /* Header */
+    header {
+        @apply sticky top-0 z-40 shadow;
+    }
+
+    /* Responsive grid and horizontal scroll */
+    .dashboard-grid {
+        @apply grid grid-cols-1 gap-6 text-white sm:grid-cols-2 xl:grid-cols-4;
+        min-width: 100%;
+    }
+
+    .dashboard-grid.horizontal-scroll {
+        @apply flex gap-6 overflow-x-auto pb-4;
+        scroll-snap-type: x mandatory;
+    }
+
+    .dashboard-grid.horizontal-scroll > div {
+        @apply min-w-[280px] flex-shrink-0;
+        scroll-snap-align: start;
+    }
+
+    .quick-actions-grid {
+        @apply grid grid-cols-1 gap-6 lg:grid-cols-2;
+    }
+
+    .quick-actions-grid.horizontal-scroll {
+        @apply flex gap-6 overflow-x-auto pb-4;
+    }
+
+    .quick-actions-grid.horizontal-scroll > div {
+        @apply min-w-[320px] flex-shrink-0;
+    }
+
+    /* Custom scrollbar for horizontal scroll */
+    .overflow-x-auto::-webkit-scrollbar {
+        @apply h-2;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar-track {
+        @apply bg-gray-100 dark:bg-gray-800;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar-thumb {
+        @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+        @apply bg-gray-400 dark:bg-gray-500;
+    }
     html {
         @apply scroll-smooth;
     }
@@ -86,6 +165,32 @@
 
     .btn-gradient {
         @apply bg-gradient-to-r from-[#EF1262] to-[#4361EE] text-white hover:from-[#4361EE] hover:to-[#EF1262];
+    }
+
+    /* Badge */
+    .badge {
+        @apply relative my-1 rounded border border-transparent px-2 py-0.5 text-xs font-semibold text-white;
+    }
+    .badge-outline-primary {
+        @apply border-primary text-primary hover:bg-primary-light dark:hover:bg-primary dark:hover:text-white-light;
+    }
+    .badge-outline-secondary {
+        @apply border-secondary text-secondary hover:bg-secondary-light dark:hover:bg-secondary dark:hover:text-white-light;
+    }
+    .badge-outline-success {
+        @apply border-success text-success hover:bg-success-light dark:hover:bg-success dark:hover:text-white-light;
+    }
+    .badge-outline-danger {
+        @apply border-danger text-danger hover:bg-danger-light dark:hover:bg-danger dark:hover:text-white-light;
+    }
+    .badge-outline-warning {
+        @apply border-warning text-warning hover:bg-warning-light dark:hover:bg-warning dark:hover:text-white-light;
+    }
+    .badge-outline-info {
+        @apply border-info text-info hover:bg-info-light dark:hover:bg-info dark:hover:text-white-light;
+    }
+    .badge-outline-dark {
+        @apply border-dark text-dark hover:bg-dark-light dark:hover:bg-dark dark:hover:text-white-light;
     }
 
     /* Form */

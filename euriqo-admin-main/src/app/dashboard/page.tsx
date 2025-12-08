@@ -1,19 +1,36 @@
+'use client';
 import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-    title: 'Dashboard - Euriqo Admin',
-};
+import { useState, useEffect } from 'react';
 
 const Dashboard = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth < 1024);
+        };
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
     return (
         <div>
             <div className="mb-6">
                 <h1 className="text-3xl font-bold text-black dark:text-white">Dashboard</h1>
                 <p className="text-gray-600 dark:text-gray-400">Welcome to Euriqo Admin Dashboard</p>
+                {isMobile && (
+                    <p className="mt-2 text-sm text-blue-600 dark:text-blue-400">
+                        💡 Swipe horizontally to view all cards
+                    </p>
+                )}
             </div>
 
             {/* Stats Cards */}
-            <div className="mb-6 grid grid-cols-1 gap-6 text-white sm:grid-cols-2 xl:grid-cols-4">
+            <div className={`mb-6 text-white ${
+                isMobile ? 'dashboard-grid horizontal-scroll' : 'dashboard-grid'
+            }`}>
                 <div className="panel bg-gradient-to-r from-cyan-500 to-cyan-400">
                     <div className="flex justify-between">
                         <div className="text-md font-semibold ltr:mr-1 rtl:ml-1">Total Users</div>
@@ -138,7 +155,9 @@ const Dashboard = () => {
             </div>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className={`${
+                isMobile ? 'quick-actions-grid horizontal-scroll' : 'quick-actions-grid'
+            }`}>
                 <div className="panel">
                     <div className="mb-5 flex items-center justify-between">
                         <h5 className="text-lg font-semibold dark:text-white-light">Quick Actions</h5>

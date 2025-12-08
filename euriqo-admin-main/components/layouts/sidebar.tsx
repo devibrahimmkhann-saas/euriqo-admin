@@ -1,9 +1,16 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSelector, useDispatch } from 'react-redux';
+import { IRootState } from '@/store';
+import { toggleSidebar } from '@/store/themeConfigSlice';
 
 const Sidebar = () => {
     const pathname = usePathname();
+    const dispatch = useDispatch();
+    const themeConfig = useSelector((state: IRootState) => state.themeConfig);
+    const semidark = useSelector((state: IRootState) => state.themeConfig.semidark);
+    const sidebarOpen = useSelector((state: IRootState) => state.themeConfig.sidebar);
 
     const menuItems = [
         {
@@ -146,15 +153,39 @@ const Sidebar = () => {
     ];
 
     return (
-        <nav className="sidebar fixed bottom-0 top-0 z-50 h-full min-h-screen w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300">
-            <div className="h-full bg-white dark:bg-black">
-                <div className="flex items-center justify-between px-4 py-3">
-                    <Link href="/dashboard" className="main-logo flex shrink-0 items-center">
-                        <span className="align-middle text-2xl font-semibold ltr:ml-1.5 rtl:mr-1.5 dark:text-white-light lg:inline">
-                            Euriqo
-                        </span>
-                    </Link>
-                </div>
+        <>
+            {/* Mobile Overlay */}
+            {sidebarOpen && (
+                <div 
+                    className="fixed inset-0 z-40 bg-black/60 lg:hidden"
+                    onClick={() => dispatch(toggleSidebar())}
+                ></div>
+            )}
+            
+            <nav className={`sidebar fixed bottom-0 top-0 z-50 h-full min-h-screen shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300 ${
+                sidebarOpen ? 'ltr:left-0 rtl:right-0' : 'ltr:-left-[260px] rtl:-right-[260px]'
+            } w-[260px] lg:ltr:left-0 lg:rtl:right-0`}>
+                <div className="h-full bg-white dark:bg-black">
+                    <div className="flex items-center justify-between px-4 py-3">
+                        <Link href="/dashboard" className="main-logo flex shrink-0 items-center">
+                            <span className="align-middle text-2xl font-semibold ltr:ml-1.5 rtl:mr-1.5 dark:text-white-light lg:inline">
+                                Euriqo
+                            </span>
+                        </Link>
+                        
+                        {/* Close button for mobile */}
+                        <button
+                            type="button"
+                            className="collapse-icon flex rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary dark:bg-dark/40 dark:text-[#d0d2d6] dark:hover:bg-dark/60 dark:hover:text-primary lg:hidden"
+                            onClick={() => dispatch(toggleSidebar())}
+                        >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 7L4 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                <path opacity="0.5" d="M20 12L4 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                <path d="M20 17L4 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                            </svg>
+                        </button>
+                    </div>
                 <div className="perfect-scrollbar h-[calc(100vh-80px)] overflow-y-auto overflow-x-hidden p-4 pb-16">
                     <ul className="relative space-y-0.5 p-4 py-0 font-semibold">
                         {menuItems.map((item, index) => (
@@ -164,6 +195,12 @@ const Sidebar = () => {
                                     className={`nav-link group ${
                                         pathname === item.href ? 'active' : ''
                                     }`}
+                                    onClick={() => {
+                                        // Close sidebar on mobile when clicking a link
+                                        if (window.innerWidth < 1024) {
+                                            dispatch(toggleSidebar());
+                                        }
+                                    }}
                                 >
                                     <div className="flex items-center">
                                         <div className="shrink-0">{item.icon}</div>
@@ -178,7 +215,12 @@ const Sidebar = () => {
                 </div>
             </div>
         </nav>
+        </>
     );
 };
 
 export default Sidebar;
+
+
+// i will gonna use userId as a key 
+// teespring xclone 1st phase readiness 
