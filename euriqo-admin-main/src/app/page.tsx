@@ -14,7 +14,7 @@ export default function Home() {
     <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Redirecting to login...</h1>
-      </div>
+        </div>
     </div>
   );
 }

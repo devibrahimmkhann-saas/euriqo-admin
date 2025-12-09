@@ -222,5 +222,4 @@ const Sidebar = () => {
 export default Sidebar;
 
 
-// i will gonna use userId as a key 
-// teespring xclone 1st phase readiness 
+

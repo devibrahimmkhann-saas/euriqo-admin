@@ -3,14 +3,17 @@ import { useRouter } from 'next/navigation';
 import { useSelector, useDispatch } from 'react-redux';
 import { IRootState } from '@/store';
 import { toggleSidebar } from '@/store/themeConfigSlice';
+import { useAuth } from '@/contexts/auth-context';
 
 const Header = () => {
     const router = useRouter();
     const dispatch = useDispatch();
     const themeConfig = useSelector((state: IRootState) => state.themeConfig);
 
+    const { logout } = useAuth();
+
     const handleLogout = () => {
-        // Add logout logic here
+        logout();
         router.push('/auth/login');
     };
 

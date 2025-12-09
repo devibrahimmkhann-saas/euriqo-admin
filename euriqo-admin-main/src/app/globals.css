@@ -10,8 +10,8 @@
 
     .sidebar .nav-item > a {
         @apply mb-1 flex w-full items-center justify-between overflow-hidden whitespace-nowrap rounded-md p-2.5 text-[#506690] hover:bg-[#000]/[0.08] hover:text-black dark:hover:bg-[#181f32] dark:hover:text-white-dark;
-    }
-    
+}
+
     .sidebar .nav-item > a.active {
         @apply bg-[#000]/[0.08] text-black dark:bg-[#181f32] dark:text-white-dark;
     }
@@ -64,7 +64,7 @@
 
     .quick-actions-grid.horizontal-scroll > div {
         @apply min-w-[320px] flex-shrink-0;
-    }
+}
 
     /* Custom scrollbar for horizontal scroll */
     .overflow-x-auto::-webkit-scrollbar {
@@ -81,12 +81,12 @@
 
     .overflow-x-auto::-webkit-scrollbar-thumb:hover {
         @apply bg-gray-400 dark:bg-gray-500;
-    }
+  }
     html {
         @apply scroll-smooth;
-    }
+}
 
-    body {
+body {
         @apply bg-[#fafafa] font-nunito;
     }
 
