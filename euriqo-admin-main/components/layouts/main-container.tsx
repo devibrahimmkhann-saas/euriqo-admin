@@ -9,7 +9,7 @@ const MainContainer = ({ children }: { children: React.ReactNode }) => {
     
     return (
         <div className={`${themeConfig.navbar} main-container min-h-screen text-black dark:text-white-dark ${
-            sidebarOpen ? 'toggle-sidebar' : ''
+            sidebarOpen ? '' : 'toggle-sidebar'
         }`}>
             {children}
         </div>

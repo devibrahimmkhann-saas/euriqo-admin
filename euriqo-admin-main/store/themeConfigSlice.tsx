@@ -3,7 +3,7 @@ import themeConfig from '@/theme.config';
 
 const initialState = {
     isDarkMode: false,
-    sidebar: false,
+    sidebar: true, // Sidebar open by default on desktop
     theme: themeConfig.theme,
     menu: themeConfig.menu,
     layout: themeConfig.layout,

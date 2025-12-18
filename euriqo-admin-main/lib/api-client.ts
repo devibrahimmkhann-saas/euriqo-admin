@@ -175,6 +175,9 @@ export const api = {
     
     me: () => 
       apiClient.get<ApiResponse>('/api/auth/me'),
+    
+    profile: () => 
+      apiClient.get<ApiResponse>('/api/auth/profile'),
   },
 
   // Generic CRUD operations

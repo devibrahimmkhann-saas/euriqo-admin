@@ -3,34 +3,225 @@
 @tailwind utilities;
 
 @layer components {
-    /* Sidebar */
+    /* Sidebar - Enterprise Professional Design */
     .sidebar {
-        @apply fixed bottom-0 top-0 z-50 h-full min-h-screen w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300;
+        @apply fixed bottom-0 top-0 h-full min-h-screen w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300;
+        background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+        box-shadow: 2px 0 20px rgba(116, 68, 253, 0.08);
+        z-index: 50;
+    }
+
+    .sidebar.dark {
+        background: linear-gradient(180deg, #0f1419 0%, #1a1f2e 100%);
+        box-shadow: 2px 0 20px rgba(116, 68, 253, 0.15);
+    }
+
+    /* Sidebar Logo Area */
+    .sidebar .sidebar-logo {
+        @apply flex items-center justify-between px-4 py-5 border-b;
+        border-color: rgba(116, 68, 253, 0.1);
+        background: rgba(116, 68, 253, 0.02);
+    }
+
+    .sidebar.dark .sidebar-logo {
+        border-color: rgba(116, 68, 253, 0.2);
+        background: rgba(116, 68, 253, 0.05);
+    }
+
+    .sidebar .sidebar-logo .logo-text {
+        @apply text-2xl font-bold;
+        background: linear-gradient(135deg, #7444FD 0%, #9d6fff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar .sidebar-menu {
+        @apply relative space-y-1 p-4 py-0 font-semibold;
+    }
+
+    .sidebar .nav-item {
+        @apply relative;
     }
 
     .sidebar .nav-item > a {
-        @apply mb-1 flex w-full items-center justify-between overflow-hidden whitespace-nowrap rounded-md p-2.5 text-[#506690] hover:bg-[#000]/[0.08] hover:text-black dark:hover:bg-[#181f32] dark:hover:text-white-dark;
-}
+        @apply mb-2 flex w-full items-center overflow-hidden whitespace-nowrap rounded-xl p-3 transition-all duration-300;
+        color: #6b7280;
+        position: relative;
+    }
 
+    .sidebar .nav-item > a::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 70%;
+        background: linear-gradient(135deg, #7444FD 0%, #9d6fff 100%);
+        border-radius: 0 8px 8px 0;
+        transition: width 0.3s ease;
+    }
+
+    .sidebar .nav-item > a:hover {
+        background: rgba(116, 68, 253, 0.08);
+        color: #7444FD;
+        transform: translateX(4px);
+    }
+
+    .sidebar.dark .nav-item > a {
+        color: #9ca3af;
+    }
+
+    .sidebar.dark .nav-item > a:hover {
+        background: rgba(116, 68, 253, 0.15);
+        color: #9d6fff;
+    }
+
+    /* Active Navigation Item */
     .sidebar .nav-item > a.active {
-        @apply bg-[#000]/[0.08] text-black dark:bg-[#181f32] dark:text-white-dark;
+        background: linear-gradient(135deg, rgba(116, 68, 253, 0.1) 0%, rgba(157, 111, 255, 0.08) 100%);
+        color: #7444FD;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(116, 68, 253, 0.15);
+    }
+
+    .sidebar .nav-item > a.active::before {
+        width: 4px;
+    }
+
+    .sidebar.dark .nav-item > a.active {
+        background: linear-gradient(135deg, rgba(116, 68, 253, 0.2) 0%, rgba(157, 111, 255, 0.15) 100%);
+        color: #9d6fff;
+        box-shadow: 0 4px 12px rgba(116, 68, 253, 0.25);
     }
 
     .sidebar .nav-item > a.active > div > span {
-        @apply dark:!text-white-dark;
+        color: #7444FD;
+        font-weight: 600;
     }
 
-    .sidebar .nav-item a div:first-child svg {
-        @apply h-5 w-5 text-black/50 dark:text-white/50;
+    .sidebar.dark .nav-item > a.active > div > span {
+        color: #9d6fff;
     }
 
+    /* Navigation Icons */
+    .sidebar .nav-item a .nav-icon {
+        @apply shrink-0 transition-all duration-300;
+    }
+
+    .sidebar .nav-item a .nav-icon svg {
+        @apply h-5 w-5;
+        color: #9ca3af;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar .nav-item a:hover .nav-icon svg {
+        color: #7444FD;
+        transform: scale(1.1);
+    }
+
+    .sidebar.dark .nav-item a .nav-icon svg {
+        color: #6b7280;
+    }
+
+    .sidebar.dark .nav-item a:hover .nav-icon svg {
+        color: #9d6fff;
+    }
+
+    .sidebar .nav-item a.active .nav-icon svg {
+        color: #7444FD;
+        transform: scale(1.05);
+    }
+
+    .sidebar.dark .nav-item a.active .nav-icon svg {
+        color: #9d6fff;
+    }
+
+    /* Navigation Text */
+    .sidebar .nav-item a .nav-text {
+        @apply text-sm ltr:pl-3 rtl:pr-3 transition-all duration-300;
+    }
+
+    /* Scrollbar Styling */
+    .sidebar .sidebar-scroll {
+        @apply h-[calc(100vh-80px)] overflow-y-auto overflow-x-hidden p-4 pb-16;
+    }
+
+    .sidebar .sidebar-scroll::-webkit-scrollbar {
+        @apply w-1.5;
+    }
+
+    .sidebar .sidebar-scroll::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    .sidebar .sidebar-scroll::-webkit-scrollbar-thumb {
+        background: rgba(116, 68, 253, 0.2);
+        @apply rounded-full;
+    }
+
+    .sidebar .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+        background: rgba(116, 68, 253, 0.4);
+    }
+
+    .sidebar.dark .sidebar-scroll::-webkit-scrollbar-thumb {
+        background: rgba(116, 68, 253, 0.3);
+    }
+
+    .sidebar.dark .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+        background: rgba(116, 68, 253, 0.5);
+    }
+
+    /* Mobile Close Button */
+    .sidebar .sidebar-close-btn {
+        @apply flex rounded-full p-2 transition-all duration-300;
+        background: rgba(116, 68, 253, 0.1);
+        color: #7444FD;
+    }
+
+    .sidebar .sidebar-close-btn:hover {
+        background: rgba(116, 68, 253, 0.2);
+        transform: rotate(90deg);
+    }
+
+    .sidebar.dark .sidebar-close-btn {
+        background: rgba(116, 68, 253, 0.15);
+        color: #9d6fff;
+    }
+
+    .sidebar.dark .sidebar-close-btn:hover {
+        background: rgba(116, 68, 253, 0.25);
+    }
+
+    /* Sidebar Minimized State */
+    .sidebar.sidebar-minimized {
+        @apply lg:w-[100px];
+    }
+
+    .sidebar.sidebar-minimized .sidebar-logo .logo-text,
+    .sidebar.sidebar-minimized .nav-text,
+    .sidebar.sidebar-minimized .sidebar-scroll > div:last-child {
+        @apply lg:hidden;
+    }
+
+    .sidebar.sidebar-minimized .sidebar-logo {
+        @apply lg:justify-center;
+    }
+
+    .sidebar.sidebar-minimized .nav-item a {
+        @apply lg:justify-center lg:px-2;
+    }
+
+    /* Main Content Area Shifts */
     .main-container .main-content {
-        @apply transition-all duration-300 lg:ltr:ml-[260px] lg:rtl:mr-[260px];
+        @apply transition-all duration-300 ltr:ml-[260px] rtl:mr-[260px];
     }
 
-    /* Mobile sidebar states */
+    /* When sidebar is toggled/minimized - adjust margin for 100px */
     .main-container.toggle-sidebar .main-content {
-        @apply lg:ltr:ml-0 lg:rtl:mr-0;
+        @apply lg:ltr:ml-[100px] lg:rtl:mr-[100px] ltr:ml-0 rtl:mr-0;
     }
 
     /* Header */

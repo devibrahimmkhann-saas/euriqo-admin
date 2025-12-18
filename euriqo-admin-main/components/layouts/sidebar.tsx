@@ -157,26 +157,38 @@ const Sidebar = () => {
             {/* Mobile Overlay */}
             {sidebarOpen && (
                 <div 
-                    className="fixed inset-0 z-40 bg-black/60 lg:hidden"
+                    className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden transition-all duration-300"
                     onClick={() => dispatch(toggleSidebar())}
                 ></div>
             )}
             
-            <nav className={`sidebar fixed bottom-0 top-0 z-50 h-full min-h-screen shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300 ${
+            <nav className={`sidebar ${semidark ? 'dark' : ''} ${
+                sidebarOpen ? '' : 'sidebar-minimized'
+            } ${
                 sidebarOpen ? 'ltr:left-0 rtl:right-0' : 'ltr:-left-[260px] rtl:-right-[260px]'
-            } w-[260px] lg:ltr:left-0 lg:rtl:right-0`}>
-                <div className="h-full bg-white dark:bg-black">
-                    <div className="flex items-center justify-between px-4 py-3">
-                        <Link href="/dashboard" className="main-logo flex shrink-0 items-center">
-                            <span className="align-middle text-2xl font-semibold ltr:ml-1.5 rtl:mr-1.5 dark:text-white-light lg:inline">
+            } lg:ltr:left-0 lg:rtl:right-0`}>
+                <div className="h-full">
+                    {/* Logo Section */}
+                    <div className="sidebar-logo">
+                        <Link href="/dashboard" className="flex shrink-0 items-center gap-2">
+                            {/* Logo Icon */}
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#7444FD] to-[#9d6fff] shadow-lg">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white" opacity="0.8"/>
+                                    <path d="M2 17L12 22L22 17" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M2 12L12 17L22 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </div>
+                            {/* Logo Text */}
+                            <span className="logo-text">
                                 Euriqo
                             </span>
                         </Link>
                         
-                        {/* Close button for mobile */}
+                        {/* Close button - Hamburger icon */}
                         <button
                             type="button"
-                            className="collapse-icon flex rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary dark:bg-dark/40 dark:text-[#d0d2d6] dark:hover:bg-dark/60 dark:hover:text-primary lg:hidden"
+                            className="sidebar-close-btn lg:hidden"
                             onClick={() => dispatch(toggleSidebar())}
                         >
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -186,35 +198,56 @@ const Sidebar = () => {
                             </svg>
                         </button>
                     </div>
-                <div className="perfect-scrollbar h-[calc(100vh-80px)] overflow-y-auto overflow-x-hidden p-4 pb-16">
-                    <ul className="relative space-y-0.5 p-4 py-0 font-semibold">
-                        {menuItems.map((item, index) => (
-                            <li key={index} className="nav-item">
-                                <Link
-                                    href={item.href}
-                                    className={`nav-link group ${
-                                        pathname === item.href ? 'active' : ''
-                                    }`}
-                                    onClick={() => {
-                                        // Close sidebar on mobile when clicking a link
-                                        if (window.innerWidth < 1024) {
-                                            dispatch(toggleSidebar());
-                                        }
-                                    }}
-                                >
-                                    <div className="flex items-center">
-                                        <div className="shrink-0">{item.icon}</div>
-                                        <span className="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">
-                                            {item.title}
-                                        </span>
-                                    </div>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
+
+                    {/* Navigation Menu */}
+                    <div className="sidebar-scroll">
+                        <ul className="sidebar-menu">
+                            {menuItems.map((item, index) => (
+                                <li key={index} className="nav-item">
+                                    <Link
+                                        href={item.href}
+                                        className={`${
+                                            pathname === item.href ? 'active' : ''
+                                        }`}
+                                        onClick={() => {
+                                            // Close sidebar on mobile when clicking a link
+                                            if (window.innerWidth < 1024) {
+                                                dispatch(toggleSidebar());
+                                            }
+                                        }}
+                                    >
+                                        <div className="flex items-center">
+                                            <div className="nav-icon">{item.icon}</div>
+                                            <span className="nav-text">
+                                                {item.title}
+                                            </span>
+                                        </div>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+
+                        {/* Sidebar Footer - Optional Upgrade Card */}
+                        <div className="mt-8 mx-4 p-4 rounded-xl bg-gradient-to-br from-[#7444FD]/10 to-[#9d6fff]/10 border border-[#7444FD]/20">
+                            <div className="flex items-center gap-3 mb-3">
+                                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#7444FD] to-[#9d6fff]">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
+                                        <path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-200">Upgrade Plan</h4>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400">Get more features</p>
+                                </div>
+                            </div>
+                            <button className="w-full py-2 px-4 text-xs font-semibold text-white bg-gradient-to-r from-[#7444FD] to-[#9d6fff] rounded-lg hover:shadow-lg transition-all duration-300">
+                                Upgrade Now
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
         </>
     );
 };
