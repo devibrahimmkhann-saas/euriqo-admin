@@ -2,12 +2,15 @@
 export interface User {
   id: string;
   email: string;
-  firstName: string;
-  lastName: string;
-  role: 'USER' | 'ADMIN' | 'MODERATOR';
-  avatar: string | null;
-  provider: 'local' | 'google';
-  emailVerified: boolean;
+  firstName?: string;
+  lastName?: string;
+  plan?: 'free' | 'pro' | 'enterprise';
+  role?: 'USER' | 'ADMIN' | 'MODERATOR';
+  avatar?: string | null;
+  provider?: 'local' | 'google';
+  emailVerified?: boolean;
+  isVerified?: boolean;
+  projects?: any[];
   createdAt: string;
   updatedAt?: string;
 }
@@ -15,6 +18,7 @@ export interface User {
 export interface AuthTokens {
   accessToken: string;
   refreshToken: string;
+  expiresIn?: string;
 }
 
 export interface AuthResponse {

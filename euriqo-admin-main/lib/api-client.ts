@@ -161,8 +161,11 @@ export const api = {
     login: (credentials: any) => 
       apiClient.post<ApiResponse>('/api/auth/login', credentials, { requiresAuth: false }),
     
+    signup: (userData: any) => 
+      apiClient.post<ApiResponse>('/api/auth/signup', userData, { requiresAuth: false }),
+    
     register: (userData: any) => 
-      apiClient.post<ApiResponse>('/api/auth/register', userData, { requiresAuth: false }),
+      apiClient.post<ApiResponse>('/api/auth/signup', userData, { requiresAuth: false }),
     
     logout: () => 
       apiClient.post<ApiResponse>('/api/auth/logout'),

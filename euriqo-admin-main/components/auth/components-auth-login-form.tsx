@@ -1,7 +1,7 @@
 'use client';
 import IconLockDots from '@/components/icon/icon-lock-dots';
 import IconMail from '@/components/icon/icon-mail';
-import { useLoginForm } from '@/hooks/use-auth-form';
+import { useLoginForm } from '@/hooks/use-login-form';
 import React from 'react';
 
 const ComponentsAuthLoginForm = () => {

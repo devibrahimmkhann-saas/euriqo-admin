@@ -95,6 +95,8 @@ interface AuthContextType {
   logout: () => void;
   clearError: () => void;
   checkAuth: () => Promise<void>;
+  updateAuthState: (user: User, tokens: AuthTokens) => void;
+  clearAuthState: () => void;
 }
 
 // Create context
@@ -259,6 +261,19 @@ export function AuthProvider({ children }: AuthProviderProps) {
     dispatch({ type: 'CLEAR_ERROR' });
   };
 
+  // Update auth state (for TanStack Query hooks)
+  const updateAuthState = (user: User, tokens: AuthTokens) => {
+    dispatch({
+      type: 'AUTH_SUCCESS',
+      payload: { user, tokens },
+    });
+  };
+
+  // Clear auth state (for TanStack Query hooks)
+  const clearAuthState = () => {
+    dispatch({ type: 'AUTH_LOGOUT' });
+  };
+
   const contextValue: AuthContextType = {
     state,
     login,
@@ -266,6 +281,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
     logout,
     clearError,
     checkAuth,
+    updateAuthState,
+    clearAuthState,
   };
 
   return (

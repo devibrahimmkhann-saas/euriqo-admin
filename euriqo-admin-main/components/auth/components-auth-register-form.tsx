@@ -2,7 +2,7 @@
 import IconLockDots from '@/components/icon/icon-lock-dots';
 import IconMail from '@/components/icon/icon-mail';
 import IconUser from '@/components/icon/icon-user';
-import { useRegisterForm } from '@/hooks/use-auth-form';
+import { useSignupForm } from '@/hooks/use-signup-form';
 import React from 'react';
 
 const ComponentsAuthRegisterForm = () => {
@@ -16,7 +16,7 @@ const ComponentsAuthRegisterForm = () => {
         handleBlur,
         handleSubmit,
         clearError,
-    } = useRegisterForm();
+    } = useSignupForm();
 
     return (
         <form className="space-y-5 dark:text-white" onSubmit={handleSubmit}>
@@ -47,10 +47,10 @@ const ComponentsAuthRegisterForm = () => {
                 </div>
             )}
 
-            {/* First Name Field */}
+            {/* First Name Field (Optional) */}
             <div>
                 <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    First Name
+                    First Name <span className="text-gray-400 text-xs">(optional)</span>
                 </label>
                 <div className="relative mt-1">
                     <input
@@ -76,10 +76,10 @@ const ComponentsAuthRegisterForm = () => {
                 )}
             </div>
 
-            {/* Last Name Field */}
+            {/* Last Name Field (Optional) */}
             <div>
                 <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Last Name
+                    Last Name <span className="text-gray-400 text-xs">(optional)</span>
                 </label>
                 <div className="relative mt-1">
                     <input
@@ -160,35 +160,6 @@ const ComponentsAuthRegisterForm = () => {
                 </div>
                 {errors.password && touched.password && (
                     <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.password}</p>
-                )}
-            </div>
-
-            {/* Confirm Password Field */}
-            <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Confirm Password
-                </label>
-                <div className="relative mt-1">
-                    <input
-                        id="confirmPassword"
-                        type="password"
-                        placeholder="Confirm your password"
-                        value={values.confirmPassword}
-                        onChange={(e) => handleChange('confirmPassword', e.target.value)}
-                        onBlur={() => handleBlur('confirmPassword')}
-                        className={`form-input ps-10 placeholder:text-white-dark ${
-                            errors.confirmPassword && touched.confirmPassword
-                                ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                                : ''
-                        }`}
-                        disabled={isSubmitting}
-                    />
-                    <span className="absolute start-4 top-1/2 -translate-y-1/2">
-                        <IconLockDots fill={true} />
-                    </span>
-                </div>
-                {errors.confirmPassword && touched.confirmPassword && (
-                    <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.confirmPassword}</p>
                 )}
             </div>
 
