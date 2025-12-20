@@ -437,6 +437,322 @@ body {
         @apply w-full;
     }
 
+    /* ===================================
+       DASHBOARD - ENTERPRISE UI STYLES
+       =================================== */
+    
+    /* Dashboard Header */
+    .dashboard-header {
+        @apply mb-8 flex items-start justify-between gap-4 flex-wrap;
+    }
+
+    .dashboard-title {
+        @apply text-3xl font-bold;
+        background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .dark .dashboard-title {
+        background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .dashboard-subtitle {
+        @apply mt-1 text-sm text-gray-600 dark:text-gray-400;
+    }
+
+    /* Create Project Button */
+    .create-project-btn {
+        @apply flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 shadow-lg;
+        background: linear-gradient(135deg, #7444FD 0%, #9d6fff 100%);
+        box-shadow: 0 4px 15px rgba(116, 68, 253, 0.3);
+    }
+
+    .create-project-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(116, 68, 253, 0.4);
+    }
+
+    .create-project-btn:active {
+        transform: translateY(0);
+    }
+
+    /* Onboarding Tooltip */
+    .onboarding-tooltip {
+        @apply absolute top-full right-0 mt-3 w-72 p-5 rounded-2xl shadow-2xl z-50;
+        background: linear-gradient(135deg, #7444FD 0%, #9d6fff 100%);
+        animation: tooltipSlideIn 0.4s ease-out;
+    }
+
+    @keyframes tooltipSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .onboarding-close {
+        @apply absolute top-3 right-3 p-1 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-all;
+    }
+
+    .onboarding-icon {
+        @apply mb-3 flex items-center justify-center;
+    }
+
+    .onboarding-title {
+        @apply text-lg font-bold text-white mb-2;
+    }
+
+    .onboarding-text {
+        @apply text-sm text-white/90 leading-relaxed;
+    }
+
+    .onboarding-arrow {
+        @apply absolute -top-2 right-8 w-4 h-4 rotate-45;
+        background: linear-gradient(135deg, #7444FD 0%, #9d6fff 100%);
+    }
+
+    /* Hover Tooltip - For users with existing projects */
+    .create-project-hover-tooltip {
+        @apply absolute top-full right-0 mt-3 w-64 p-4 rounded-xl shadow-lg z-50 opacity-0 pointer-events-none transition-all duration-300;
+        background: linear-gradient(135deg, rgba(116, 68, 253, 0.95) 0%, rgba(157, 111, 255, 0.95) 100%);
+        backdrop-filter: blur(10px);
+        transform: translateY(-5px);
+    }
+
+    .group:hover .create-project-hover-tooltip {
+        @apply opacity-100 pointer-events-auto;
+        transform: translateY(0);
+    }
+
+    .hover-tooltip-text {
+        @apply text-sm text-white font-medium leading-relaxed;
+    }
+
+    .hover-tooltip-arrow {
+        @apply absolute -top-2 right-8 w-4 h-4 rotate-45;
+        background: linear-gradient(135deg, rgba(116, 68, 253, 0.95) 0%, rgba(157, 111, 255, 0.95) 100%);
+    }
+
+    /* Stats Cards - Enterprise Design */
+    .stat-card {
+        @apply rounded-2xl p-6 transition-all duration-300 border;
+        background: #ffffff;
+        border-color: rgba(229, 231, 235, 0.8);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .dark .stat-card {
+        background: #1a1f2e;
+        border-color: rgba(55, 65, 81, 0.5);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .dark .stat-card:hover {
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .stat-card-header {
+        @apply flex items-center justify-between mb-4;
+    }
+
+    .stat-card-icon {
+        @apply flex items-center justify-center w-12 h-12 rounded-xl;
+    }
+
+    .stat-card-primary .stat-card-icon {
+        background: linear-gradient(135deg, rgba(116, 68, 253, 0.1) 0%, rgba(157, 111, 255, 0.05) 100%);
+        color: #7444FD;
+    }
+
+    .stat-card-secondary .stat-card-icon {
+        background: linear-gradient(135deg, rgba(116, 68, 253, 0.08) 0%, rgba(157, 111, 255, 0.04) 100%);
+        color: #9d6fff;
+    }
+
+    .stat-card-info .stat-card-icon {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(96, 165, 250, 0.05) 100%);
+        color: #3b82f6;
+    }
+
+    .stat-card-warning .stat-card-icon {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
+        color: #f59e0b;
+    }
+
+    .stat-card-menu {
+        @apply text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer transition-colors;
+    }
+
+    .stat-card-body {
+        @apply space-y-3;
+    }
+
+    .stat-card-label {
+        @apply text-sm font-medium text-gray-600 dark:text-gray-400;
+    }
+
+    .stat-card-value-row {
+        @apply flex items-baseline gap-3;
+    }
+
+    .stat-card-value {
+        @apply text-3xl font-bold text-gray-900 dark:text-white;
+    }
+
+    .stat-badge {
+        @apply px-2.5 py-1 rounded-lg text-xs font-semibold;
+    }
+
+    .stat-badge-success {
+        @apply bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400;
+    }
+
+    .stat-badge-danger {
+        @apply bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400;
+    }
+
+    .stat-card-footer {
+        @apply text-xs text-gray-500 dark:text-gray-400;
+    }
+
+    .stat-card-footer-label {
+        @apply font-medium;
+    }
+
+    /* Action Panels - Enterprise Design */
+    .action-panel {
+        @apply rounded-2xl p-6 border transition-all duration-300;
+        background: #ffffff;
+        border-color: rgba(229, 231, 235, 0.8);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .action-panel:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .dark .action-panel {
+        background: #1a1f2e;
+        border-color: rgba(55, 65, 81, 0.5);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .dark .action-panel:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .action-panel-header {
+        @apply mb-5 pb-4 border-b border-gray-200 dark:border-gray-700;
+    }
+
+    .action-panel-title {
+        @apply text-lg font-semibold text-gray-900 dark:text-white;
+    }
+
+    .action-panel-body {
+        @apply space-y-3;
+    }
+
+    /* Action Buttons */
+    .action-btn {
+        @apply w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-medium transition-all duration-300 border;
+    }
+
+    .action-btn-icon {
+        @apply flex items-center justify-center w-10 h-10 rounded-lg;
+    }
+
+    .action-btn-primary {
+        @apply bg-white border-gray-200 text-gray-700 hover:border-[#7444FD] hover:text-[#7444FD];
+        @apply dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:border-[#9d6fff] dark:hover:text-[#9d6fff];
+    }
+
+    .action-btn-primary:hover .action-btn-icon {
+        background: linear-gradient(135deg, rgba(116, 68, 253, 0.1) 0%, rgba(157, 111, 255, 0.05) 100%);
+    }
+
+    .action-btn-secondary {
+        @apply bg-white border-gray-200 text-gray-700 hover:border-[#9d6fff] hover:text-[#9d6fff];
+        @apply dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:border-[#9d6fff] dark:hover:text-[#9d6fff];
+    }
+
+    .action-btn-secondary:hover .action-btn-icon {
+        background: linear-gradient(135deg, rgba(157, 111, 255, 0.1) 0%, rgba(116, 68, 253, 0.05) 100%);
+    }
+
+    .action-btn-info {
+        @apply bg-white border-gray-200 text-gray-700 hover:border-blue-500 hover:text-blue-500;
+        @apply dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:border-blue-400 dark:hover:text-blue-400;
+    }
+
+    .action-btn-info:hover .action-btn-icon {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(96, 165, 250, 0.05) 100%);
+    }
+
+    .action-btn:hover {
+        transform: translateX(4px);
+    }
+
+    /* Activity Items */
+    .activity-item {
+        @apply flex items-start gap-3 p-3 rounded-xl transition-all duration-300;
+        @apply hover:bg-gray-50 dark:hover:bg-gray-800/50;
+    }
+
+    .activity-icon {
+        @apply flex items-center justify-center w-10 h-10 rounded-lg flex-shrink-0;
+    }
+
+    .activity-icon-primary {
+        background: linear-gradient(135deg, rgba(116, 68, 253, 0.1) 0%, rgba(157, 111, 255, 0.05) 100%);
+        color: #7444FD;
+    }
+
+    .activity-icon-success {
+        background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(74, 222, 128, 0.05) 100%);
+        color: #22c55e;
+    }
+
+    .activity-icon-warning {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
+        color: #f59e0b;
+    }
+
+    .activity-content {
+        @apply flex-1 min-w-0;
+    }
+
+    .activity-date {
+        @apply text-xs font-medium mb-1;
+        color: #7444FD;
+    }
+
+    .dark .activity-date {
+        color: #9d6fff;
+    }
+
+    .activity-title {
+        @apply text-sm font-semibold text-gray-900 dark:text-white mb-0.5;
+    }
+
+    .activity-description {
+        @apply text-xs text-gray-500 dark:text-gray-400;
+    }
+
     /* tables */
     .table-responsive {
         @apply overflow-auto;

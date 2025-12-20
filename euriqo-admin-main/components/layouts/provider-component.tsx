@@ -15,11 +15,11 @@ const ProviderComponent = ({ children }: IProps) => {
     return (
         <Provider store={store}>
             <QueryProvider>
-                <AuthProvider>
-                    <Suspense fallback={<Loading />}>
-                        <App>{children}</App>
-                    </Suspense>
-                </AuthProvider>
+            <AuthProvider>
+                <Suspense fallback={<Loading />}>
+                    <App>{children}</App>
+                </Suspense>
+            </AuthProvider>
             </QueryProvider>
         </Provider>
     );

@@ -28,25 +28,25 @@ const Sidebar = () => {
             ),
             href: '/dashboard',
         },
-        {
-            title: 'Twilio / Voice Calls',
-            icon: (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M16.1007 13.359L16.5562 12.9062C17.1858 12.2801 18.1672 12.1515 18.9728 12.5894L20.8833 13.628C22.1102 14.2949 22.3806 15.9295 21.4217 16.883L20.0011 18.2954C19.6399 18.6546 19.1917 18.9171 18.6763 18.9651M4.00289 5.74561C3.96765 5.12559 4.25823 4.56668 4.69185 4.13552L6.26145 2.57483C7.13596 1.70529 8.61028 1.83992 9.37326 2.85908L10.6342 4.54348C11.2507 5.36691 11.1841 6.49484 10.4775 7.19738L10.1907 7.48257"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                    />
-                    <path
-                        opacity="0.5"
-                        d="M18.6763 18.9651C17.0469 19.117 13.0622 18.9492 8.8154 14.7266C4.81076 10.7447 4.09308 7.33182 4.00293 5.74561"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                    />
-                </svg>
-            ),
-            href: '/dashboard/twilio',
-        },
+        // {
+        //     title: 'Twilio / Voice Calls',
+        //     icon: (
+        //         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        //             <path
+        //                 d="M16.1007 13.359L16.5562 12.9062C17.1858 12.2801 18.1672 12.1515 18.9728 12.5894L20.8833 13.628C22.1102 14.2949 22.3806 15.9295 21.4217 16.883L20.0011 18.2954C19.6399 18.6546 19.1917 18.9171 18.6763 18.9651M4.00289 5.74561C3.96765 5.12559 4.25823 4.56668 4.69185 4.13552L6.26145 2.57483C7.13596 1.70529 8.61028 1.83992 9.37326 2.85908L10.6342 4.54348C11.2507 5.36691 11.1841 6.49484 10.4775 7.19738L10.1907 7.48257"
+        //                 stroke="currentColor"
+        //                 strokeWidth="1.5"
+        //             />
+        //             <path
+        //                 opacity="0.5"
+        //                 d="M18.6763 18.9651C17.0469 19.117 13.0622 18.9492 8.8154 14.7266C4.81076 10.7447 4.09308 7.33182 4.00293 5.74561"
+        //                 stroke="currentColor"
+        //                 strokeWidth="1.5"
+        //             />
+        //         </svg>
+        //     ),
+        //     href: '/dashboard/twilio',
+        // },
         {
             title: 'System Settings',
             icon: (
@@ -62,22 +62,22 @@ const Sidebar = () => {
             ),
             href: '/dashboard/settings',
         },
-        {
-            title: 'Widget / Branding',
-            icon: (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                    />
-                    <path opacity="0.5" d="M6 8L18 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path opacity="0.5" d="M6 12L18 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path opacity="0.5" d="M6 16L18 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-            ),
-            href: '/dashboard/branding',
-        },
+        // {
+        //     title: 'Widget / Branding',
+        //     icon: (
+        //         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        //             <path
+        //                 d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12Z"
+        //                 stroke="currentColor"
+        //                 strokeWidth="1.5"
+        //             />
+        //             <path opacity="0.5" d="M6 8L18 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        //             <path opacity="0.5" d="M6 12L18 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        //             <path opacity="0.5" d="M6 16L18 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        //         </svg>
+        //     ),
+        //     href: '/dashboard/branding',
+        // },
         {
             title: 'Knowledge Base',
             icon: (
@@ -95,25 +95,25 @@ const Sidebar = () => {
             ),
             href: '/dashboard/knowledge-base',
         },
-        {
-            title: 'Voice & Narrator',
-            icon: (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8V11C17 13.7614 14.7614 16 12 16C9.23858 16 7 13.7614 7 11V8Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                    />
-                    <path opacity="0.5" d="M13.5 8L17 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path opacity="0.5" d="M13.5 11L17 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path opacity="0.5" d="M7 8L10.5 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path opacity="0.5" d="M7 11L10.5 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path d="M20 10V12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12V10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path d="M12 20V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-            ),
-            href: '/dashboard/voice',
-        },
+        // {
+        //     title: 'Voice & Narrator',
+        //     icon: (
+        //         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        //             <path
+        //                 d="M7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8V11C17 13.7614 14.7614 16 12 16C9.23858 16 7 13.7614 7 11V8Z"
+        //                 stroke="currentColor"
+        //                 strokeWidth="1.5"
+        //             />
+        //             <path opacity="0.5" d="M13.5 8L17 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        //             <path opacity="0.5" d="M13.5 11L17 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        //             <path opacity="0.5" d="M7 8L10.5 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        //             <path opacity="0.5" d="M7 11L10.5 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        //             <path d="M20 10V12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12V10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        //             <path d="M12 20V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        //         </svg>
+        //     ),
+        //     href: '/dashboard/voice',
+        // },
         {
             title: 'Messages & Conversations',
             icon: (
@@ -135,21 +135,21 @@ const Sidebar = () => {
             ),
             href: '/dashboard/messages',
         },
-        {
-            title: 'Analytics',
-            icon: (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 18V16M12 18V14M17 18V12M7 14V12M12 10V8M17 8V6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path
-                        opacity="0.5"
-                        d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                    />
-                </svg>
-            ),
-            href: '/dashboard/analytics',
-        },
+        // {
+        //     title: 'Analytics',
+        //     icon: (
+        //         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        //             <path d="M7 18V16M12 18V14M17 18V12M7 14V12M12 10V8M17 8V6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        //             <path
+        //                 opacity="0.5"
+        //                 d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z"
+        //                 stroke="currentColor"
+        //                 strokeWidth="1.5"
+        //             />
+        //         </svg>
+        //     ),
+        //     href: '/dashboard/analytics',
+        // },
     ];
 
     return (
