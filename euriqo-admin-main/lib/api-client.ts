@@ -180,6 +180,24 @@ export const api = {
       apiClient.get<ApiResponse>('/api/auth/profile'),
   },
 
+  // Projects endpoints
+  projects: {
+    create: (projectData: { name: string; description?: string; domain: string }) =>
+      apiClient.post<ApiResponse>('/api/projects', projectData),
+    
+    list: () =>
+      apiClient.get<ApiResponse>('/api/projects'),
+    
+    get: (projectId: string) =>
+      apiClient.get<ApiResponse>(`/api/projects/${projectId}`),
+    
+    update: (projectId: string, projectData: any) =>
+      apiClient.put<ApiResponse>(`/api/projects/${projectId}`, projectData),
+    
+    delete: (projectId: string) =>
+      apiClient.delete<ApiResponse>(`/api/projects/${projectId}`),
+  },
+
   // Generic CRUD operations
   get: <T>(endpoint: string, config?: Parameters<typeof apiClient.get>[1]) => 
     apiClient.get<T>(endpoint, config),

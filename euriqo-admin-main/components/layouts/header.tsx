@@ -63,7 +63,7 @@ const Header = () => {
                     </button>
                 </div>
 
-                <div className="flex items-center space-x-1.5 ltr:ml-auto rtl:mr-auto rtl:space-x-reverse dark:text-[#d0d2d6] sm:flex-1 ltr:sm:ml-0 sm:rtl:mr-0">
+                <div  className="flex justify-between items-center space-x-1.5 ltr:ml-auto rtl:mr-auto rtl:space-x-reverse dark:text-[#d0d2d6] sm:flex-1 ltr:sm:ml-0 sm:rtl:mr-0">
                     {/* Desktop Toggle Button */}
                     <button
                         type="button"

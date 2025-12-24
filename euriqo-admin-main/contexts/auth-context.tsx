@@ -119,8 +119,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   // Check if user is authenticated
   const checkAuth = async () => {
     try {
-      dispatch({ type: 'SET_LOADING', payload: true });
-
       // Check if tokens exist in storage
       const tokens = TokenStorage.getTokens();
       const user = TokenStorage.getUser();
@@ -157,7 +155,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           return;
         }
       } else {
-        // Token is still valid
+        // Token is still valid - set auth immediately without loading
         dispatch({
           type: 'AUTH_SUCCESS',
           payload: { user, tokens },

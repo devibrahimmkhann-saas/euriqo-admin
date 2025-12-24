@@ -3,7 +3,6 @@ import { PropsWithChildren, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '@/store';
 import { toggleRTL, toggleTheme, toggleMenu, toggleLayout, toggleAnimation, toggleNavbar, toggleSemidark } from '@/store/themeConfigSlice';
-import Loading from '@/components/layouts/loading';
 
 function App({ children }: PropsWithChildren) {
     const themeConfig = useSelector((state: IRootState) => state.themeConfig);
@@ -11,15 +10,30 @@ function App({ children }: PropsWithChildren) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        dispatch(toggleTheme(localStorage.getItem('theme') || themeConfig.theme));
-        dispatch(toggleMenu(localStorage.getItem('menu') || themeConfig.menu));
-        dispatch(toggleLayout(localStorage.getItem('layout') || themeConfig.layout));
-        dispatch(toggleRTL(localStorage.getItem('rtlClass') || themeConfig.rtlClass));
-        dispatch(toggleAnimation(localStorage.getItem('animation') || themeConfig.animation));
-        dispatch(toggleNavbar(localStorage.getItem('navbar') || themeConfig.navbar));
-        dispatch(toggleSemidark(localStorage.getItem('semidark') || themeConfig.semidark));
+        // Load theme config from localStorage synchronously
+        const loadThemeConfig = () => {
+            if (typeof window !== 'undefined') {
+                const theme = localStorage.getItem('theme') || themeConfig.theme;
+                const menu = localStorage.getItem('menu') || themeConfig.menu;
+                const layout = localStorage.getItem('layout') || themeConfig.layout;
+                const rtlClass = localStorage.getItem('rtlClass') || themeConfig.rtlClass;
+                const animation = localStorage.getItem('animation') || themeConfig.animation;
+                const navbar = localStorage.getItem('navbar') || themeConfig.navbar;
+                const semidark = localStorage.getItem('semidark') || themeConfig.semidark;
 
-        setIsLoading(false);
+                dispatch(toggleTheme(theme));
+                dispatch(toggleMenu(menu));
+                dispatch(toggleLayout(layout));
+                dispatch(toggleRTL(rtlClass));
+                dispatch(toggleAnimation(animation));
+                dispatch(toggleNavbar(navbar));
+                dispatch(toggleSemidark(semidark));
+            }
+            
+            setIsLoading(false);
+        };
+
+        loadThemeConfig();
     }, [dispatch, themeConfig.theme, themeConfig.menu, themeConfig.layout, themeConfig.rtlClass, themeConfig.animation, themeConfig.navbar, themeConfig.semidark]);
 
     return (
@@ -28,7 +42,13 @@ function App({ children }: PropsWithChildren) {
                 themeConfig.rtlClass
             } main-section relative font-nunito text-sm font-normal antialiased`}
         >
-            {isLoading ? <Loading /> : children}
+            {isLoading ? (
+                <div className="min-h-screen flex items-center justify-center">
+                    <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-[#7444FD] border-r-transparent"></div>
+                </div>
+            ) : (
+                children
+            )}
         </div>
     );
 }

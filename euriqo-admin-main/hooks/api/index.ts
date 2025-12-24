@@ -7,4 +7,12 @@
 
 export { useSignup, useLogin, useLogout } from './use-auth';
 export { useProfile } from './use-profile';
+export { 
+  useCreateProject, 
+  useProjects, 
+  useProject, 
+  useUpdateProject, 
+  useDeleteProject 
+} from './use-projects';
+export type { Project, CreateProjectData, ProjectResponse } from './use-projects';
 

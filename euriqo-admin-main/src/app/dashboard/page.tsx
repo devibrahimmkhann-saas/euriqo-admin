@@ -1,16 +1,19 @@
 'use client';
 import { Metadata } from 'next';
 import { useState, useEffect } from 'react';
-import { useProfile } from '@/hooks/api';
+import { useProfile, useProjects } from '@/hooks/api';
 import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 const Dashboard = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [showOnboarding, setShowOnboarding] = useState(false);
     const { data: user } = useProfile();
+    const { data: projectsData, isLoading: projectsLoading } = useProjects();
     const router = useRouter();
     
-    const hasProjects = user?.projects && user.projects.length > 0;
+    const projects = projectsData?.projects || [];
+    const hasProjects = projects.length > 0;
     const userName = user?.name || `${user?.firstName || ''} ${user?.lastName || ''}`.trim() || 'there';
 
     useEffect(() => {
@@ -47,6 +50,25 @@ const Dashboard = () => {
     const closeOnboarding = () => {
         localStorage.setItem('hasSeenOnboarding', 'true');
         setShowOnboarding(false);
+    };
+
+    // Handle copy public key
+    const handleCopyPublicKey = (publicId: string, projectName: string) => {
+        navigator.clipboard.writeText(publicId);
+        Swal.fire({
+            icon: 'success',
+            title: 'Copied!',
+            text: `Public key for "${projectName}" copied to clipboard`,
+            timer: 2000,
+            showConfirmButton: false,
+            toast: true,
+            position: 'top-end',
+        });
+    };
+
+    // Handle view project
+    const handleViewProject = (projectId: string) => {
+        router.push(`/dashboard/projects/${projectId}`);
     };
 
     return (
@@ -276,8 +298,123 @@ const Dashboard = () => {
                 </div>
             </div>
 
+            {/* Projects Section */}
+            <div className="mb-6">
+                <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Your Projects</h2>
+                    {projectsData && (
+                        <span className="text-sm text-gray-500 dark:text-gray-400">
+                            {projectsData.count} of {projectsData.plan === 'free' ? projectsData.limits.free : projectsData.plan === 'pro' ? projectsData.limits.pro : projectsData.limits.enterprise} projects
+                        </span>
+                    )}
+                </div>
+
+                {projectsLoading ? (
+                    <div className="flex items-center justify-center py-12">
+                        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-[#7444FD] border-r-transparent"></div>
+                    </div>
+                ) : projects.length === 0 ? (
+                    <div className="panel text-center py-12">
+                        <div className="mb-4">
+                            <svg className="h-16 w-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                            </svg>
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">No projects yet</h3>
+                        <p className="text-gray-500 dark:text-gray-400 mb-4">Get started by creating your first project</p>
+                        <button
+                            onClick={handleCreateProject}
+                            className="btn btn-primary"
+                            style={{
+                                background: 'linear-gradient(135deg, #7444FD 0%, #9d6fff 100%)',
+                                border: 'none'
+                            }}
+                        >
+                            <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                            </svg>
+                            Create Your First Project
+                        </button>
+                    </div>
+                ) : (
+                    <div className={`${isMobile ? 'projects-grid horizontal-scroll' : 'projects-grid'}`}>
+                        {projects.map((project) => (
+                            <div key={project.id} className="project-card">
+                                <div className="project-card-header">
+                                    <div className="flex items-center gap-3">
+                                        <div className="project-icon">
+                                            <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor" opacity="0.8"/>
+                                                <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                                <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <h3 className="project-name">{project.name}</h3>
+                                            <p className="project-domain">{project.domain}</p>
+                                        </div>
+                                        <div className={`project-status ${project.active ? 'project-status-active' : 'project-status-inactive'}`}>
+                                            {project.active ? 'Active' : 'Inactive'}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="project-card-body">
+                                    <p className="project-description">
+                                        {project.description || 'No description provided'}
+                                    </p>
+
+                                    <div className="project-stats">
+                                        <div className="project-stat">
+                                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                                            </svg>
+                                            <span>{project._count?.chats || 0} chats</span>
+                                        </div>
+                                        <div className="project-stat">
+                                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                            </svg>
+                                            <span>{project.rateLimit} req/min</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="project-public-key">
+                                        <label className="project-key-label">Public Key</label>
+                                        <div className="project-key-container">
+                                            <code className="project-key-value">{project.publicId}</code>
+                                            <button
+                                                onClick={() => handleCopyPublicKey(project.publicId, project.name)}
+                                                className="project-key-copy"
+                                                title="Copy public key"
+                                            >
+                                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="project-card-footer">
+                                    <button
+                                        onClick={() => handleViewProject(project.id)}
+                                        className="project-view-btn"
+                                    >
+                                        <span>View Details</span>
+                                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+
             {/* Quick Actions - Enterprise Design */}
-            <div className={`${
+            {/* <div className={`${
                 isMobile ? 'quick-actions-grid horizontal-scroll' : 'quick-actions-grid'
             }`}>
                 <div className="action-panel">
@@ -383,7 +520,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

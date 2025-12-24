@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/auth-context';
-import Loading from '@/components/layouts/loading';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -25,25 +24,37 @@ const ProtectedRoute = ({
 
     if (requireAuth && !state.isAuthenticated) {
       // User needs to be authenticated but isn't
-      router.push(redirectTo);
+      router.replace(redirectTo);
     } else if (!requireAuth && state.isAuthenticated) {
       // User shouldn't be authenticated but is (e.g., login page when already logged in)
-      router.push('/dashboard');
+      router.replace('/dashboard');
     }
   }, [state.isAuthenticated, state.isLoading, requireAuth, redirectTo, router]);
 
-  // Show loading while checking authentication
+  // Show minimal loading while checking authentication
   if (state.isLoading) {
-    return <Loading />;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-[#7444FD] border-r-transparent"></div>
+      </div>
+    );
   }
 
-  // Show loading while redirecting
+  // Show minimal loading while redirecting
   if (requireAuth && !state.isAuthenticated) {
-    return <Loading />;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-[#7444FD] border-r-transparent"></div>
+      </div>
+    );
   }
 
   if (!requireAuth && state.isAuthenticated) {
-    return <Loading />;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-[#7444FD] border-r-transparent"></div>
+      </div>
+    );
   }
 
   return <>{children}</>;

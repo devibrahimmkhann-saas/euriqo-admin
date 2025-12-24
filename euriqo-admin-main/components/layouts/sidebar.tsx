@@ -184,48 +184,35 @@ const Sidebar = () => {
                                 Euriqo
                             </span>
                         </Link>
-                        
-                        {/* Close button - Hamburger icon */}
-                        <button
-                            type="button"
-                            className="sidebar-close-btn lg:hidden"
-                            onClick={() => dispatch(toggleSidebar())}
-                        >
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 7L4 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                                <path opacity="0.5" d="M20 12L4 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                                <path d="M20 17L4 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                            </svg>
-                        </button>
                     </div>
 
                     {/* Navigation Menu */}
                     <div className="sidebar-scroll">
                         <ul className="sidebar-menu">
-                            {menuItems.map((item, index) => (
-                                <li key={index} className="nav-item">
-                                    <Link
-                                        href={item.href}
+                        {menuItems.map((item, index) => (
+                            <li key={index} className="nav-item">
+                                <Link
+                                    href={item.href}
                                         className={`${
-                                            pathname === item.href ? 'active' : ''
-                                        }`}
-                                        onClick={() => {
-                                            // Close sidebar on mobile when clicking a link
-                                            if (window.innerWidth < 1024) {
-                                                dispatch(toggleSidebar());
-                                            }
-                                        }}
-                                    >
-                                        <div className="flex items-center">
+                                        pathname === item.href ? 'active' : ''
+                                    }`}
+                                    onClick={() => {
+                                        // Close sidebar on mobile when clicking a link
+                                        if (window.innerWidth < 1024) {
+                                            dispatch(toggleSidebar());
+                                        }
+                                    }}
+                                >
+                                    <div className="flex items-center">
                                             <div className="nav-icon">{item.icon}</div>
                                             <span className="nav-text">
-                                                {item.title}
-                                            </span>
-                                        </div>
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                                            {item.title}
+                                        </span>
+                                    </div>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
 
                         {/* Sidebar Footer - Optional Upgrade Card */}
                         <div className="mt-8 mx-4 p-4 rounded-xl bg-gradient-to-br from-[#7444FD]/10 to-[#9d6fff]/10 border border-[#7444FD]/20">
@@ -246,8 +233,8 @@ const Sidebar = () => {
                             </button>
                         </div>
                     </div>
-                </div>
-            </nav>
+            </div>
+        </nav>
         </>
     );
 };
