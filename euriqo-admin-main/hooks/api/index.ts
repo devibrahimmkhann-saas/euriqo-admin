@@ -15,4 +15,12 @@ export {
   useDeleteProject 
 } from './use-projects';
 export type { Project, CreateProjectData, ProjectResponse } from './use-projects';
+export { 
+  useProjectFAQs, 
+  useCreateFAQ, 
+  useUpdateFAQ, 
+  useDeleteFAQ,
+  parseFAQString 
+} from './use-faqs';
+export type { FAQ, ParsedFAQItem, CreateFAQData, UpdateFAQData, ProjectFAQResponse } from './use-faqs';
 

@@ -912,3 +912,135 @@ body {
         @apply !bg-white-light/20 dark:!bg-[#1a2941]/40;
     }
 }
+
+/* Knowledge Base Styles */
+.kb-stat-card {
+    @apply panel flex items-center gap-4 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-200 dark:border-gray-800 transition-all duration-300 hover:shadow-lg;
+}
+
+.kb-stat-icon {
+    @apply flex h-12 w-12 items-center justify-center rounded-lg shadow-md;
+}
+
+.kb-stat-icon-primary {
+    @apply bg-gradient-to-br from-[#7444FD] to-[#9d6fff] text-white;
+}
+
+.kb-stat-icon-success {
+    @apply bg-gradient-to-br from-green-500 to-green-600 text-white;
+}
+
+.kb-stat-icon-warning {
+    @apply bg-gradient-to-br from-orange-500 to-orange-600 text-white;
+}
+
+.kb-stat-icon-info {
+    @apply bg-gradient-to-br from-blue-500 to-blue-600 text-white;
+}
+
+.kb-stat-label {
+    @apply text-sm text-gray-600 dark:text-gray-400;
+}
+
+.kb-stat-value {
+    @apply text-2xl font-bold text-gray-900 dark:text-white;
+}
+
+.kb-upload-area {
+    @apply flex h-48 flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 cursor-pointer transition-all hover:border-[#7444FD] hover:bg-gray-100 dark:hover:bg-gray-700;
+}
+
+.kb-info-box {
+    @apply flex gap-3 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800;
+}
+
+.kb-faq-card {
+    @apply rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4 transition-all duration-300 hover:shadow-lg hover:border-[#7444FD]/30;
+}
+
+.kb-faq-header {
+    @apply flex items-start justify-between mb-3;
+}
+
+.kb-faq-icon {
+    @apply flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#7444FD]/10 to-[#9d6fff]/10 text-[#7444FD];
+}
+
+.kb-faq-question {
+    @apply font-semibold text-gray-900 dark:text-white text-base mb-2;
+}
+
+.kb-faq-project-badge {
+    @apply inline-block px-2 py-1 text-xs font-medium rounded-md bg-[#7444FD]/10 text-[#7444FD] dark:bg-[#7444FD]/20;
+}
+
+.kb-faq-answer {
+    @apply text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3 pl-12;
+}
+
+.kb-faq-footer {
+    @apply flex items-center justify-between pt-3 border-t border-gray-200 dark:border-gray-700;
+}
+
+.kb-faq-date {
+    @apply text-xs text-gray-500 dark:text-gray-400;
+}
+
+.kb-action-btn {
+    @apply p-2 rounded-lg transition-all duration-200;
+}
+
+.kb-action-btn-edit {
+    @apply text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20;
+}
+
+.kb-action-btn-delete {
+    @apply text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20;
+}
+
+.kb-badge {
+    @apply px-2 py-1 text-xs font-semibold rounded-full;
+}
+
+.kb-badge-success {
+    @apply bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400;
+}
+
+.kb-badge-category {
+    @apply bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-400;
+}
+
+.kb-empty-state {
+    @apply flex flex-col items-center justify-center py-16 text-center;
+}
+
+.kb-project-card {
+    @apply panel bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-200 dark:border-gray-800 transition-all duration-300 hover:shadow-lg hover:border-[#7444FD]/30;
+}
+
+.kb-project-icon {
+    @apply flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#7444FD] to-[#9d6fff] text-white shadow-md;
+}
+
+.kb-project-count {
+    @apply text-sm font-semibold text-[#7444FD] bg-[#7444FD]/10 px-3 py-1 rounded-full;
+}
+
+.kb-project-name {
+    @apply text-lg font-bold text-gray-900 dark:text-white mb-1;
+}
+
+.kb-project-domain {
+    @apply text-sm text-gray-600 dark:text-gray-400 mb-4;
+}
+
+.kb-project-view-btn {
+    @apply w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium text-white transition-all duration-300;
+    background: linear-gradient(135deg, #7444FD 0%, #9d6fff 100%);
+    box-shadow: 0 4px 12px rgba(116, 68, 253, 0.2);
+}
+
+.kb-project-view-btn:hover {
+    box-shadow: 0 6px 16px rgba(116, 68, 253, 0.3);
+    transform: translateY(-2px);
+}

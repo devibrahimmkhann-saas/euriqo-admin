@@ -198,6 +198,21 @@ export const api = {
       apiClient.delete<ApiResponse>(`/api/projects/${projectId}`),
   },
 
+  // FAQs endpoints
+  faqs: {
+    getByProject: (projectId: string) =>
+      apiClient.get<ApiResponse>(`/api/faqs/project/${projectId}`),
+    
+    create: (faqData: { projectId: string; faqs: string }) =>
+      apiClient.post<ApiResponse>('/api/faqs', faqData),
+    
+    update: (faqId: string, faqData: { faqs: string }) =>
+      apiClient.put<ApiResponse>(`/api/faqs/${faqId}`, faqData),
+    
+    delete: (faqId: string) =>
+      apiClient.delete<ApiResponse>(`/api/faqs/${faqId}`),
+  },
+
   // Generic CRUD operations
   get: <T>(endpoint: string, config?: Parameters<typeof apiClient.get>[1]) => 
     apiClient.get<T>(endpoint, config),
